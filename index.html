@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的世界服务器</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" fill="%23262638"/><rect x="50" width="50" height="50" fill="%231e1e2e"/><rect y="50" width="50" height="50" fill="%231e1e2e"/><rect x="50" y="50" width="50" height="50" fill="%23262638"/></svg>');
+            background-size: 100px;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(30, 30, 46, 0.9);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 3px solid #4a4a6a;
+            text-align: center;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+        }
+        
+        .logo h1 {
+            font-size: 3rem;
+            color: #4CAF50;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+            margin-bottom: 10px;
+        }
+        
+        .logo p {
+            color: #aaa;
+            font-size: 1.2rem;
+        }
+        
+        .server-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .info-card {
+            background: rgba(42, 42, 58, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #4a4a6a;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .info-card h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .info-card p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .highlight {
+            background: #2a2a3a;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.4rem;
+            color: #4CAF50;
+            border: 1px solid #4a4a6a;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .join-notice {
+            background: rgba(42, 42, 58, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            border: 2px solid #4a4a6a;
+            margin-bottom: 25px;
+        }
+        
+        .join-notice h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .join-notice ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .join-notice li {
+            margin-bottom: 10px;
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .join-notice i {
+            color: #4CAF50;
+            margin-top: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #4a4a6a;
+            color: #aaa;
+            width: 100%;
+        }
+        
+        .pixel-art {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .pixel {
+            width: 20px;
+            height: 20px;
+            margin: 2px;
+        }
+        
+        .green { background-color: #4CAF50; }
+        .dark-green { background-color: #2E7D32; }
+        .brown { background-color: #795548; }
+        .dark-brown { background-color: #5D4037; }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+            
+            .highlight {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <h1>我的世界服务器</h1>
+            <p>欢迎来到充满乐趣与冒险的世界！</p>
+            
+            <!-- 简单的像素艺术 -->
+            <div class="pixel-art">
+                <div class="pixel green"></div>
+                <div class="pixel dark-green"></div>
+                <div class="pixel green"></div>
+                <div class="pixel dark-green"></div>
+                <div class="pixel green"></div>
+            </div>
+            <div class="pixel-art">
+                <div class="pixel brown"></div>
+                <div class="pixel dark-brown"></div>
+                <div class="pixel brown"></div>
+                <div class="pixel dark-brown"></div>
+                <div class="pixel brown"></div>
+            </div>
+        </div>
+        
+        <div class="server-info">
+            <!-- 加入需知 -->
+            <div class="join-notice">
+                <h3><i class="fas fa-info-circle"></i> 加入前请仔细阅读</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> 请确保你是正版并且有QQ群发的白名单</li>
+                    <li><i class="fas fa-check"></i> 服务器版本为Java版1.21.10，请确保客户端版本匹配</li>
+                    <li><i class="fas fa-check"></i> 请遵守服务器规则，文明游戏，尊重其他玩家</li>
+                    <li><i class="fas fa-check"></i> 如有任何问题，请加入QQ群联系管理员</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h2><i class="fas fa-server"></i> 服务器地址</h2>
+                <p>复制以下地址加入游戏</p>
+                <div class="highlight">
+                    </i>
+                    play.simpfun.cn:16851
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h2><i class="fab fa-qq"></i> 官方QQ群</h2>
+                <p>加入群聊获取最新资讯和帮助</p>
+                <div class="highlight">
+                    </i>
+                    721935562
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 我的世界服务器 | play.simpfun.cn:16851 | QQ群: 721935562</p>
+            <p>如有问题，请加入QQ群联系管理员</p>
+        </footer>
+    </div>
+</body>
+</html>
