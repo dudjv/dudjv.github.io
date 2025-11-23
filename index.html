@@ -1,247 +1,193 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的世界服务器</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #1a1a2e;
-            color: #fff;
-            background-image: 
-                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="50" height="50" fill="%23262638"/><rect x="50" width="50" height="50" fill="%231e1e2e"/><rect y="50" width="50" height="50" fill="%231e1e2e"/><rect x="50" y="50" width="50" height="50" fill="%23262638"/></svg>');
-            background-size: 100px;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-            background: rgba(30, 30, 46, 0.9);
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 3px solid #4a4a6a;
-            text-align: center;
-        }
-        
-        .logo {
-            margin-bottom: 30px;
-        }
-        
-        .logo h1 {
-            font-size: 3rem;
-            color: #4CAF50;
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-            margin-bottom: 10px;
-        }
-        
-        .logo p {
-            color: #aaa;
-            font-size: 1.2rem;
-        }
-        
-        .server-info {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .info-card {
-            background: rgba(42, 42, 58, 0.8);
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            border: 2px solid #4a4a6a;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .info-card h2 {
-            color: #4CAF50;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .info-card p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #ccc;
-        }
-        
-        .highlight {
-            background: #2a2a3a;
-            padding: 15px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 1.4rem;
-            color: #4CAF50;
-            border: 1px solid #4a4a6a;
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .join-notice {
-            background: rgba(42, 42, 58, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: left;
-            border: 2px solid #4a4a6a;
-            margin-bottom: 25px;
-        }
-        
-        .join-notice h3 {
-            color: #4CAF50;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .join-notice ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .join-notice li {
-            margin-bottom: 10px;
-            color: #ccc;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        
-        .join-notice i {
-            color: #4CAF50;
-            margin-top: 3px;
-        }
-        
-        footer {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #4a4a6a;
-            color: #aaa;
-            width: 100%;
-        }
-        
-        .pixel-art {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
-        .pixel {
-            width: 20px;
-            height: 20px;
-            margin: 2px;
-        }
-        
-        .green { background-color: #4CAF50; }
-        .dark-green { background-color: #2E7D32; }
-        .brown { background-color: #795548; }
-        .dark-brown { background-color: #5D4037; }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .logo h1 {
-                font-size: 2.2rem;
-            }
-            
-            .highlight {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title> </title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; padding: 16px; max-width: 980px; }
+    pre { background:#f6f8fa; padding:8px; border-radius:6px; overflow:auto; max-height:420px; white-space:pre-wrap; }
+    button { margin:6px 8px 6px 0; padding:8px 12px; }
+    .warn { color: #a00; }
+    .ok { color: #080; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <h1>我的世界服务器</h1>
-            <p>欢迎来到充满乐趣与冒险的世界！</p>
-            
-            <!-- 简单的像素艺术 -->
-            <div class="pixel-art">
-                <div class="pixel green"></div>
-                <div class="pixel dark-green"></div>
-                <div class="pixel green"></div>
-                <div class="pixel dark-green"></div>
-                <div class="pixel green"></div>
-            </div>
-            <div class="pixel-art">
-                <div class="pixel brown"></div>
-                <div class="pixel dark-brown"></div>
-                <div class="pixel brown"></div>
-                <div class="pixel dark-brown"></div>
-                <div class="pixel brown"></div>
-            </div>
-        </div>
-        
-        <div class="server-info">
-            <!-- 加入需知 -->
-            <div class="join-notice">
-                <h3><i class="fas fa-info-circle"></i> 加入前请仔细阅读</h3>
-                <ul>
-                    <li><i class="fas fa-check"></i> 请确保你有QQ群发的白名单</li>
-                    <li><i class="fas fa-check"></i> 服务器版本为Java版1.21.10，请确保客户端版本匹配</li>
-                    <li><i class="fas fa-check"></i> 请遵守服务器规则，文明游戏，尊重其他玩家</li>
-                    <li><i class="fas fa-check"></i> 如有任何问题，请加入QQ群联系管理员</li>
-                </ul>
-            </div>
-            
-            <div class="info-card">
-                <h2><i class="fas fa-server"></i> 服务器地址</h2>
-                <p>复制以下地址加入游戏</p>
-                <div class="highlight">
-                    </i>
-                    play.simpfun.cn:16851
-                </div>
-            </div>
-            
-            <div class="info-card">
-                <h2><i class="fab fa-qq"></i> 官方QQ群</h2>
-                <p>加入群聊获取最新资讯和帮助</p>
-                <div class="highlight">
-                    </i>
-                    721935562
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2023 我的世界服务器 | play.simpfun.cn:16851 | QQ群: 721935562</p>
-            <p>如有问题，请加入QQ群联系管理员</p>
-        </footer>
-    </div>
+  <h2>  </h2>
+  <p> </p>
+
+  <div>
+    <button id="btn-stop">停止写入</button>
+    <button id="btn-clean">清理示例数据</button>
+  </div>
+
+  <h3>日志 / 进度</h3>
+  <pre id="log">初始化...</pre>
+
+  <script>
+  (function () {
+    const MB = 1024 * 1024;
+    const GB = 1000 * MB;
+    const TARGET_2GB_BYTES = 100 * 1024 * MB; // 2 GB = 2048 MB
+    // 默认 chunk 大小（1000 MB）。可调为 2MB/4MB，但较大 chunk 可能触发单次写入限制。
+    const CHUNK_SIZE = 1000 * MB;
+
+    let running = false;
+    let stopRequested = false;
+
+    const logEl = document.getElementById('log');
+    function log(...args) {
+      console.log(...args);
+      const t = new Date().toLocaleTimeString();
+      const s = args.map(a => (typeof a === 'object' ? JSON.stringify(a) : String(a))).join(' ');
+      logEl.textContent += `\n[${t}] ${s}`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    // estimate storage if available
+    async function getEstimate() {
+      if (navigator.storage && navigator.storage.estimate) {
+        try {
+          const est = await navigator.storage.estimate();
+          return est; // {quota, usage}
+        } catch (e) {
+          log('navigator.storage.estimate() 调用失败：', e);
+          return null;
+        }
+      }
+      return null;
+    }
+
+    function makeChunk(size, seed = 0) {
+      // 生成填充的 Uint8Array（避免一次性生成过大内存）
+      const arr = new Uint8Array(size);
+      for (let i = 0; i < size; i++) {
+        arr[i] = ((i + seed) * 17 + 31) & 0xFF;
+      }
+      return arr;
+    }
+
+    // IndexedDB open & ensure store
+    function openDb(dbName = 'big_write_db', storeName = 'chunks') {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(dbName, 1);
+        req.onupgradeneeded = (ev) => {
+          const db = ev.target.result;
+          if (!db.objectStoreNames.contains(storeName)) {
+            db.createObjectStore(storeName);
+          }
+        };
+        req.onsuccess = (ev) => resolve(ev.target.result);
+        req.onerror = (ev) => reject(ev.target.error || ev);
+      });
+    }
+
+    async function writeChunk(db, storeName, key, blob) {
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction(storeName, 'readwrite');
+        const st = tx.objectStore(storeName);
+        const r = st.put(blob, key);
+        r.onsuccess = () => resolve();
+        r.onerror = (e) => reject(e);
+        tx.oncomplete = () => { /* done */ };
+        tx.onerror = (e) => { /* handled by r.onerror */ };
+      });
+    }
+
+    async function write2GBByChunks() {
+      if (running) {
+        log('已有写入任务在运行，无法重复启动。');
+        return;
+      }
+      running = true;
+      stopRequested = false;
+      log('开始写入 GB（分块写入），chunk =', (CHUNK_SIZE / MB).toFixed(2), 'MB');
+
+      const est = await getEstimate();
+      if (est) {
+        log('Storage estimate:', est);
+        if (est.quota) {
+          const freeApprox = Math.max(0, (est.quota - (est.usage || 0)));
+          log('估算剩余可用字节（仅供参考）：', freeApprox, '字节（约', (freeApprox / MB).toFixed(1), 'MB）');
+        }
+      } else {
+        log('无法获取 storage estimate（浏览器可能不支持），将尝试尽可能写入。');
+      }
+
+      try {
+        const db = await openDb('big_write_db', 'chunks');
+        const totalBytes = TARGET_2GB_BYTES;
+        const chunkBytes = CHUNK_SIZE;
+        const chunks = Math.ceil(totalBytes / chunkBytes);
+        log('总共要写入', (totalBytes / MB).toFixed(0), 'MB，分', chunks, '个 chunk');
+
+        for (let i = 0; i < chunks; i++) {
+          if (stopRequested) {
+            log('已请求停止写入，终止过程。已写入 chunk 数：', i);
+            break;
+          }
+
+          const thisSize = (i === chunks - 1) ? (totalBytes - i * chunkBytes) : chunkBytes;
+          // 生成 chunk（1MB） -> Blob -> 写入
+          // 为了减少内存峰值，先生成 Uint8Array 再变为 Blob，完成后允许 GC 回收
+          const arr = makeChunk(thisSize, i);
+          const blob = new Blob([arr], { type: 'application/octet-stream' });
+
+          try {
+            const key = 'chunk-' + String(i).padStart(8, '0');
+            await writeChunk(db, 'chunks', key, blob);
+            log(`已写入 chunk ${i+1}/${chunks} (${(thisSize/MB).toFixed(2)} MB)`);
+          } catch (e) {
+            log('写入 chunk 失败 at index', i, e);
+            // 如果失败，尝试降低 chunk 大小或退出
+            // 这里我们选择记录错误并停止，用户可重试或在控制台查看错误
+            throw e;
+          }
+
+          // 小的延迟让浏览器处理事件循环，避免 UI 卡死
+          await new Promise(r => setTimeout(r, 5));
+        }
+
+        log('写入流程结束（可能是全部写入完成或中途停止）。');
+        try { db.close(); } catch (e) { /* ignore */ }
+      } catch (err) {
+        log('写入 2GB 过程中发生错误：', err);
+        log('建议：检查控制台完整错误信息、浏览器是否弹出允许对话，或降低 chunk 大小后重试。');
+      } finally {
+        running = false;
+      }
+    }
+
+    // 自动开始写入
+    document.addEventListener('DOMContentLoaded', () => {
+      log('页面加载完成，自动开始写入 GB...');
+      write2GBByChunks();
+    });
+
+    document.getElementById('btn-stop').addEventListener('click', () => {
+      if (!running) { log('当前没有写入任务。'); return; }
+      stopRequested = true;
+      log('已请求停止写入（写入将在当前 chunk 完成后停止）');
+    });
+
+    document.getElementById('btn-clean').addEventListener('click', async () => {
+      if (confirm('确认删除用于示例的 IndexedDB 数据库并释放空间吗？')) {
+        log('开始删除示例 IndexedDB 数据库...');
+        try {
+          const delReq = indexedDB.deleteDatabase('big_write_db');
+          delReq.onsuccess = () => log('IndexedDB: 删除成功');
+          delReq.onerror = (e) => log('IndexedDB: 删除失败', e);
+          delReq.onblocked = () => log('IndexedDB: 删除阻塞（有其他页面或 worker 打开了此 DB）');
+        } catch (e) {
+          log('删除 IndexedDB 异常', e);
+        }
+      } else {
+        log('用户取消清理操作。');
+      }
+    });
+
+    log('脚本就绪。页面加载后将自动开始写入 GB。');
+  })();
+  </script>
 </body>
 </html>
